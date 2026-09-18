@@ -44,3 +44,7 @@ npm test
 ```
 
 Covers the key gate, the labelled input, and the details panel against a fixture.
+
+## Licence
+
+MIT. Take it, change it, ship it.
