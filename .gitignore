@@ -1,0 +1,9 @@
+node_modules
+dist
+.env.local
+
+# Yarn PnP, so a stray `yarn install` never lands a second lockfile beside
+# package-lock.json.
+.yarn/
+.pnp.*
+yarn.lock
