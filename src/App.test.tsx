@@ -21,6 +21,14 @@ describe("the example app", () => {
     render(<App publicKey={KEY} />);
     expect(screen.queryByText(/address_detail_pid/)).not.toBeInTheDocument();
   });
+
+  it("credits locio, and opens it safely in a new tab", () => {
+    render(<App publicKey={KEY} />);
+    const link = screen.getByRole("link", { name: /locio\.com\.au/i });
+    expect(link).toHaveAttribute("href", "https://locio.com.au");
+    expect(link).toHaveAttribute("target", "_blank");
+    expect(link).toHaveAttribute("rel", "noopener noreferrer");
+  });
 });
 
 const SAMPLE: Address = {

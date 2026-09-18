@@ -186,3 +186,17 @@ a {
   .title { font-size: 1.6rem; }
   .row { grid-template-columns: 1fr; gap: 0.1rem; }
 }
+
+.foot {
+  margin-top: 4rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--rule);
+}
+
+.foot p {
+  margin: 0;
+  font-family: ui-serif, Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--muted);
+}

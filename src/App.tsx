@@ -64,6 +64,16 @@ export function App({
           </p>
         </section>
       )}
+
+      {/* Attribution. Delete this block if you would rather not carry it. */}
+      <footer className="foot">
+        <p>
+          Address search by{" "}
+          <a href="https://locio.com.au" target="_blank" rel="noopener noreferrer">
+            locio.com.au
+          </a>
+        </p>
+      </footer>
     </main>
   );
 }
