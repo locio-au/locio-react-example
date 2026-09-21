@@ -32,6 +32,7 @@ describe("the example app", () => {
 });
 
 const SAMPLE: Address = {
+  id: "GAACT714845933",
   address_detail_pid: "GAACT714845933",
   formatted: "10 Rudd Street, Canberra ACT 2601",
   lat: -35.2809,
@@ -45,8 +46,28 @@ const SAMPLE: Address = {
 describe("the details panel", () => {
   it("leads with the id worth storing", () => {
     render(<AddressDetails address={SAMPLE} />);
-    expect(screen.getByText("address_detail_pid")).toBeInTheDocument();
-    expect(screen.getByText("GAACT714845933")).toBeInTheDocument();
+    expect(screen.getByText("id")).toBeInTheDocument();
+    expect(screen.getAllByText("GAACT714845933").length).toBeGreaterThan(0);
+  });
+
+  // An address from another country carries `id` and nothing G-NAF publishes,
+  // so a panel that only knew the G-NAF name would show a record with no id
+  // at all. Australia is the only country with data today, which is exactly
+  // when this is easy to get wrong and never notice.
+  it("shows the id of an address that is not in G-NAF", () => {
+    render(
+      <AddressDetails
+        address={{
+          id: "5f2c1e1a-1f6d-4f7a-9d26-2a1c7f2b9f41",
+          country_code: "US",
+          formatted: "145 Sydney Road, Columbus OH 43215",
+          lat: 39.9578,
+          lng: -83.0031,
+          locality: "Columbus",
+        }}
+      />,
+    );
+    expect(screen.getByText("5f2c1e1a-1f6d-4f7a-9d26-2a1c7f2b9f41")).toBeInTheDocument();
   });
 
   it("shows the coordinate and the mesh block", () => {

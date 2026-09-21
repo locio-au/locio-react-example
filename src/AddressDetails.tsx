@@ -1,14 +1,20 @@
-import type { Address } from "@locio-au/react";
+import { addressId, type Address } from "@locio-au/react";
 
 /**
  * What came back, laid out plainly.
  *
  * The point of the panel is to show which field you would actually store:
- * the pid, not the formatted line, which changes whenever G-NAF tidies its
- * punctuation.
+ * the id, not the formatted line, which changes whenever the register tidies
+ * its punctuation.
+ *
+ * The id is read through addressId rather than off a field, because which
+ * field holds it depends on where the address is: an Australian record
+ * carries it under G-NAF's own column name as well, and a record from another
+ * register carries only `id`.
  */
 export function AddressDetails({ address }: { address: Address }) {
   const rows: Array<[string, string | undefined]> = [
+    ["id", addressId(address)],
     ["address_detail_pid", address.address_detail_pid],
     ["formatted", address.formatted],
     ["lat, lng", `${address.lat}, ${address.lng}`],
